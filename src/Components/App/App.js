@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
+
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
+
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state.searchResults = [{
-      name: "Name1",
-      artist: "Artist1",
-      album: "Album1"
-    }, {
-      name: "Name2",
-      artist: "Artist2",
-      album: "Album2"
-    }, {
-      name: "Name3",
-      artist: "Artist3",
-      album: "Album3"
-    }];
+    this.state = {
+      searchResults: [
+        {
+          name: "Track 1",
+          artist: "Artist 1",
+          album: "Album 1"
+        },
+        {
+          name: "Track 2",
+          artist: "Artist 2",
+          album: "Album 2"
+        }
+      ],
+      playlistName: "Any string",
+      playlistTracks: [
+        {
+          name: "Track 1",
+          artist: "Artist 1",
+          album: "Album 1"
+        },
+        {
+          name: "Track 2",
+          artist: "Artist 2",
+          album: "Album 2"
+        }
+      ]
+    };
   }
+
   render() {
     return (
       <div>
@@ -26,10 +46,12 @@ class App extends Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults}/>
-            <Playlist component />
+            <Playlist playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
           </div>
         </div>
       </div>
     );
   }
 }
+
+export default App;
