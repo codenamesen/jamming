@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TrackList from './TrackList';
 
-class Playlist extends React.Component {
+class Playlist extends Component {
   render() {
     return (
       <div className="Playlist">
