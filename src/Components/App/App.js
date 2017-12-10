@@ -38,6 +38,11 @@ class App extends Component {
     };
   }
 
+  addTrack(track) {
+    if (track.id === )
+
+  }
+
   render() {
     return (
       <div>
