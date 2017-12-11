@@ -4,11 +4,10 @@ import TrackList from '../TrackList/Tracklist';
 class Playlist extends Component {
   constructor(props) {
     super(props);
-    this.
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
   handleNameChange(e) {
-    let newName = e.target.value;
-    this.props.onNameChange(newName);
+    this.props.onNameChange(e.target.value);
   }
   render() {
     return (
