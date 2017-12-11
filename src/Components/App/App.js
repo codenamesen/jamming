@@ -39,21 +39,26 @@ class App extends Component {
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
   }
 
   /*___________________CA advisor David taught me this_______________________*/
   addTrack(track) {
-  let tracks = this.state.playListTracks;
+  let tracks = this.state.playlistTracks;
     if (!tracks.id.includes(track.id)) {
       tracks.push(track);
-      this.setState({playListTracks: tracks});
+      this.setState({playlistTracks: tracks});
     }
   }
 
   removeTrack(track) {
-    let tracks = this.state.playListTracks;
+    let tracks = this.state.playlistTracks;
     tracks = tracks.filter(existingTrack => exsistingTrack.id !== track.id);
-    this.setState({playListTracks: tracks});
+    this.setState({playlistTracks: tracks});
+  }
+
+  updatePlaylistName(name) {
+    this.setSate({playlistName: name})
   }
 
   render() {
@@ -65,7 +70,7 @@ class App extends Component {
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <Playlist
-            playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
+            playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName}/>
           </div>
         </div>
       </div>
