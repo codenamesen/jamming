@@ -40,6 +40,7 @@ class App extends Component {
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
   }
 
   /*___________________CA advisor David taught me this_______________________*/
@@ -61,6 +62,10 @@ class App extends Component {
     this.setSate({playlistName: name})
   }
 
+  savePlaylist() {
+    const trackURIs = this.state.playlistTracks.map(track => track.uri);
+  }
+
   render() {
     return (
       <div>
@@ -70,7 +75,7 @@ class App extends Component {
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
             <Playlist
-            playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName}/>
+            playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist}/>
           </div>
         </div>
       </div>
