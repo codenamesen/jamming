@@ -36,11 +36,24 @@ class App extends Component {
         }
       ]
     };
+
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
+  /*___________________CA advisor David taught me this_______________________*/
   addTrack(track) {
-    if (track.id === )
+  let tracks = this.state.playListTracks;
+    if (!tracks.id.includes(track.id)) {
+      tracks.push(track);
+      this.setState({playListTracks: tracks});
+    }
+  }
 
+  removeTrack(track) {
+    let tracks = this.state.playListTracks;
+    tracks = tracks.filter(existingTrack => exsistingTrack.id !== track.id);
+    this.setState({playListTracks: tracks});
   }
 
   render() {
@@ -50,8 +63,9 @@ class App extends Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
-            <Playlist playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack}/>
+            <Playlist
+            playListName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
           </div>
         </div>
       </div>
