@@ -17,8 +17,7 @@ class Track extends Component {
   }
 
   renderAction() {
-    return (
-      isRemoval ? <a className="Track-action" onClick={this.removeTrack}>'-'</a> : <a className="Track-action" onClick={this.addTrack}>'+'</a>);
+    return isRemoval ? <a className="Track-action" onClick={this.removeTrack}>'-'</a> : <a className="Track-action" onClick={this.addTrack}>'+'</a>;
   }
 
 
