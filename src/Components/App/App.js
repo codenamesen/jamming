@@ -11,36 +11,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {
-          name: "Track 1",
-          artist: "Artist 1",
-          album: "Album 1"
-        },
-        {
-          name: "Track 2",
-          artist: "Artist 2",
-          album: "Album 2"
-        },
-        {
-          name: "Track 3",
-          artist: "Artist 3",
-          album: "Album 3"
-        }
-      ],
-      playlistName: "Any string",
-      playlistTracks: [
-        {
-          name: "Track 1",
-          artist: "Artist 1",
-          album: "Album 1"
-        },
-        {
-          name: "Track 2",
-          artist: "Artist 2",
-          album: "Album 2"
-        }
-      ]
+      searchResults: [],
+      playlistName: "New Playlist",
+      playlistTracks: []
     };
 
     this.addTrack = this.addTrack.bind(this);
@@ -52,7 +25,7 @@ class App extends Component {
 
   /*___________________CA advisor David taught me this_______________________*/
   addTrack(track) {
-  let tracks = this.state.playlist;
+  let tracks = this.state.playlistTracks;
     if (!tracks.id.includes(track.id)) {
       tracks.push(track);
       this.setState({playlistTracks: tracks});
@@ -66,11 +39,16 @@ class App extends Component {
   }
 
   updatePlaylistName(name) {
-    this.setSate({playlistName: name})
+    this.setState({playlistName: name})
   }
 
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    this.setState({
+      searchResults: [],
+      playlistName: 'New Playlist'
+    });
   }
 
   search(searchTerm) {
