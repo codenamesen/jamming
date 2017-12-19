@@ -12,6 +12,7 @@ class SearchBar extends Component {
 
   handleTermChange(e) {
     this.setState({searchTerm: e.target.value});
+    console.log(this.state.searchTerm);
   }
 
   search() {

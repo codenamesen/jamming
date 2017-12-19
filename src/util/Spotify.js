@@ -22,6 +22,7 @@ Spotify.getAccessToken = function() {
     const expirationTime = Number(urlExpirationTime[1]);
     window.setTimeout(() => userAccessToken = '', expirationTime * 1000);
     window.history.pushState('Access Token', null, '/');
+    return userAccessToken;
   }
   window.location = urlToAuthorize;
 }
@@ -29,7 +30,7 @@ Spotify.getAccessToken = function() {
 Spotify.search = function(searchTerm) {
   userAccessToken = Spotify.getAccessToken();
 
-  fetch(`${urlToSearch}${searchTerm}`, {
+  return fetch(`${urlToSearch}${searchTerm}`, {
     headers: {Authorization: `Bearer${userAccessToken}`}
   }).then(response => {
     if(response.ok) {
