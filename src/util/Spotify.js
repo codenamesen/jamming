@@ -28,7 +28,7 @@ Spotify.getAccessToken = function() {
 
 Spotify.search = function(searchTerm) {
   userAccessToken = Spotify.getAccessToken();
-  
+
   fetch(`${urlToSearch}${searchTerm}`, {
     headers: {Authorization: `Bearer${userAccessToken}`}
   }).then(response => {
