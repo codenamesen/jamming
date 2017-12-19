@@ -23,11 +23,12 @@ Spotify.getAccessToken = function() {
     window.setTimeout(() => userAccessToken = '', expirationTime * 1000);
     window.history.pushState('Access Token', null, '/');
   }
-
-  window.location.assign = urlToAuthorize;
+  window.location = urlToAuthorize;
 }
 
 Spotify.search = function(searchTerm) {
+  userAccessToken = Spotify.getAccessToken();
+  
   fetch(`${urlToSearch}${searchTerm}`, {
     headers: {Authorization: `Bearer${userAccessToken}`}
   }).then(response => {
@@ -61,7 +62,7 @@ Spotify.savePlaylist = function(playlistName, trackURIsArray) {
 
   const urlForUsername = 'https://api.spotify.com/v1/me';
   const urlForPlaylist = `https://api.spotify.com//v1/users/${userId}/playlists`;
-  const urlToAddPlaylist = `https://api.spotify.com//v1/users/v1/users/${userId}/playlists/${playlistId}/tracks`
+  const urlToAddPlaylist = `https://api.spotify.com//v1/users/v1/users/${userId}/playlists/${playlistId}/tracks`;
 
   fetch(urlForUsername, {headers: headers}).then(response => {
     if(response.ok){
