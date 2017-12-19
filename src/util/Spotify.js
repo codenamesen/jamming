@@ -6,10 +6,10 @@ const urlToAuthorize = `https://accounts.spotify.com/authorize?client_id=${clien
 
 const Spotify = {};
 
-const userAccessToken = '';
+let userAccessToken = undefined;
 
 
-getAccessToken() {
+Spotify.getAccessToken = function() {
   if(userAccessToken) {
     return userAccessToken;
   }
@@ -27,7 +27,7 @@ getAccessToken() {
   window.location.assign = urlToAuthorize;
 }
 
-Spotify.search() = function(searchTerm) {
+Spotify.search = function(searchTerm) {
   fetch(`urlToFetch${searchTerm}`,{
     headers: {Authorization: `Bearer${userAccessToken}`}
   }).then(response => {
@@ -38,6 +38,13 @@ Spotify.search() = function(searchTerm) {
   }, networkError => console.log(networkError.message)).then(jsonResponse => {
     if(jsonResponse) {
       console.log(jsonResponse);
+      return jsonResponse.tracks.items.map(track => ({
+        id: track.id,
+        name: track.name,
+        artist: track.artists[0].name,
+        album: track.album.name,
+        uri: track.uri
+      }));
     }
     return [];
   });
