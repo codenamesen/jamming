@@ -10,6 +10,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       searchResults: [],
       playlistName: "New Playlist",
@@ -26,10 +27,16 @@ class App extends Component {
   /*___________________CA advisor David taught me this_______________________*/
   addTrack(track) {
   let tracks = this.state.playlistTracks;
+  if(tracks.length !== 0) {
     if (!tracks.id.includes(track.id)) {
       tracks.push(track);
+
       this.setState({playlistTracks: tracks});
     }
+  }
+  tracks.push(track);
+
+  this.setState({playlistTracks: tracks});
   }
 
   removeTrack(track) {
