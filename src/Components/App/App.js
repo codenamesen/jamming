@@ -24,20 +24,14 @@ class App extends Component {
     this.search = this.search.bind(this);
   }
 
-  /*___________________CA advisor David taught me this_______________________*/
+  /*__________________________________________*/
   addTrack(track) {
-  let tracks = this.state.playlistTracks;
-  if(tracks.length !== 0) {
-    if (!tracks.includes(track.id)) {
-      tracks.push(track);
-
-      this.setState({playlistTracks: tracks});
+    let tracks = this.state.playlistTracks;
+    if(tracks.find(savedTrack => savedTrack.id === track.id)){
+      return
     }
-    return;
-  }
-  tracks.push(track);
-
-  this.setState({playlistTracks: tracks});
+    tracks.push(track);
+    this.setState({playlistTracks: tracks});
   }
 
   removeTrack(track) {
@@ -52,10 +46,13 @@ class App extends Component {
 
   savePlaylist() {
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
+
     Spotify.savePlaylist(this.state.playlistName, trackURIs);
+
     this.setState({
+      playlistName: "New Playlist",
       searchResults: [],
-      playlistName: 'New Playlist'
+      playlistTracks: []
     });
   }
 
