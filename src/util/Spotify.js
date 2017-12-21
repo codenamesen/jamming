@@ -1,6 +1,6 @@
 const clientId = '28c85d9e5b07407288eed7fe96b40121';
 
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "http://jammmIt.surge.sh";
 const urlToSearch = "https://api.spotify.com/v1/search?type=track&q=";
 const urlToAuthorize = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
 
